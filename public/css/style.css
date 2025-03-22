@@ -1,77 +1,138 @@
 :root {
-    --light: #cccccc;
-    --dark: #333333;
+	--light: #cccccc;
+	--dark: #333333;
 }
 
 * {
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
-    font-family: sans-serif;
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+	font-family: sans-serif;
 }
 
 body {
-    background-color: var(--dark);
-    color: var(--light);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100vw;
-    height: 100vh;
+	background-color: var(--dark);
+	color: var(--light);
 }
 
 main {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+	padding: 20px;
 }
 
-div#typing-container { 
-    div#typing-area {
-        width: 100%;
-        min-width: 300px;
-        max-width: 1024px;
-        min-height: 100px;
-        border-radius: 10px 10px 0 0;
-        background-color: #ffffff99;
-        color: var(--dark);
-        font-size: xx-large;
-        padding: 20px 30px;
-        line-height: 48px;
-        display: flex;
-        align-items: center;
-        flex-wrap: wrap;
+div#typing-container {
+	min-width: 300px;
+	max-width: 1024px;
+	margin: 0 auto;
+	display: flex;
+	flex-direction: column;
 
-        span {
-            color: #777777;
+	& div#actions {
+		padding: 10px;
+		display: flex;
+		justify-content: center;
 
-            &.typed {
-                color: #006100cc;
-                background-color: #00610022;
-            }
+		button#restart {
+			border: none;
+			outline: none;
+			font-size: large;
+			font-weight: 600;
+			text-transform: uppercase;
+			padding: 15px 30px;
+			border-radius: 5px;
+			background-color: #283c5e;
+			color: var(--light);
+			cursor: pointer;
 
-            &.mistyped {
-                background-color: #ff000022;
-            }
-        }
-    }
+			&:active {
+				scale: 80%;
+				transition-duration: 300ms;
+			}
+		}
+	}
 
-    textarea#typing-field {
-        width: 100%;
-        min-height: 84px;
-        border-radius: 0 0 10px 10px;
-        background-color: #ffffff99;
-        color: var(--dark);
-        font-size: xx-large;
-        border: 2px solid #999999;
-        border-width: 2px 0 0 0;
-        padding: 20px 30px;
-        outline: none;
-        resize: vertical;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
+	& div#typing-area {
+		min-height: 100px;
+		background-color: #ffffff99;
+		color: var(--dark);
+		font-size: xx-large;
+		border-radius: 10px 10px 0 0;
+		padding: 20px 30px;
+		line-height: 48px;
+		display: flex;
+		align-items: center;
+		flex-wrap: wrap;
+		user-select: none;
+
+		& span {
+			color: #777777;
+
+			&.typed {
+				color: #006100cc;
+				background-color: #00610022;
+			}
+
+			&.mistyped {
+				background-color: #ff000022;
+			}
+		}
+	}
+
+	& textarea#typing-field {
+		border-radius: 0 0 10px 10px;
+		background-color: #ffffff99;
+		color: var(--dark);
+		font-size: xx-large;
+		line-height: 48px;
+		padding: 20px 30px;
+		border: 2px solid #999999;
+		border-width: 2px 0 0 0;
+		outline: none;
+		resize: vertical;
+		scrollbar-width: none;
+
+		&::placeholder {
+			color: #999999;
+		}
+	}
+
+	& div#display-stats {
+		padding: 20px;
+		display: flex;
+		justify-content: center;
+		gap: 20px;
+
+		& #wpm,
+		& #timer {
+			background-color: #ffffff33;
+			min-width: 160px;
+			padding: 15px 20px;
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			align-items: center;
+			border-radius: 10px;
+
+			& h1,
+			& p {
+				font-family: monospace;
+			}
+
+			& h1 {
+				font-size: 48px;
+			}
+
+			& {
+				font-size: 20px;
+			}
+		}
+	}
+
+	div#keyboard-hand-position {
+		display: flex;
+		justify-content: center;
+
+		img {
+			max-width: 700px;
+		}
+	}
 }

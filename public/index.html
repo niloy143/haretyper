@@ -9,8 +9,24 @@
 <body>
     <main>
         <div id="typing-container">
+            <div id="actions">
+                <button id="restart">Restart</button>
+            </div>
             <div id="typing-area"></div>
-            <textarea id="typing-field"></textarea>
+            <textarea id="typing-field" placeholder="Type here..."></textarea>
+            <div id="display-stats">
+                <div id="wpm">
+                    <h1>00</h1>
+                    <p>WPM</p>
+                </div>
+                <div id="timer">
+                    <h1>00</h1>
+                    <p>Seconds</p>
+                </div>
+            </div>
+            <div id="keyboard-hand-position">
+                <img src="../assets/images/keyborad-hand-position.png"></img>
+            </div>
         </div>
     </main>
     <script src="./js/quran.js"></script>
