@@ -1,17 +1,27 @@
 {
-  "name": "haretyper",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "start": "electron .",
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "type": "module",
-  "devDependencies": {
-    "electron": "^35.0.1"
-  }
+	"name": "haretyper",
+	"version": "1.0.0",
+	"description": "A simple typing app that suggests only Quranic verses for typing tests.",
+	"main": "index.js",
+	"scripts": {
+		"start": "electron .",
+		"build:deb": "electron-builder --linux deb"
+	},
+	"build": {
+		"appId": "org.niloy.haretyper",
+		"productName": "HareTyper",
+		"linux": {
+			"target": "deb",
+			"category": "Utility",
+			"icon": "assets/icon.png"
+		}
+	},
+	"homepage": "https://haretyper.niloy.org",
+	"author": "Niloy Mahmud Apu <niloymahmudapu@gmail.com>",
+	"license": "ISC",
+	"type": "module",
+	"devDependencies": {
+		"electron": "^35.0.1",
+		"electron-builder": "^25.1.8"
+	}
 }
