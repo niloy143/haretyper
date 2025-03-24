@@ -5,16 +5,28 @@
 	"main": "index.js",
 	"scripts": {
 		"start": "electron .",
-		"build:deb": "electron-builder --linux deb"
+		"build:deb": "electron-builder --linux deb",
+		"build:win": "electron-builder --win",
+		"build": "npm run build:deb && npm run build:win"
 	},
 	"build": {
 		"appId": "org.niloy.haretyper",
 		"productName": "HareTyper",
+		"directories": {
+			"output": "dist"
+		},
 		"linux": {
 			"target": "deb",
 			"category": "Utility",
-			"icon": "assets/icon.png"
-		}
+			"icon": "assets/icon.png",
+			"artifactName": "../builds/haretyper-${version}.deb"
+		},
+		"win": {
+			"target": "nsis",
+			"icon": "assets/icon.ico",
+			"artifactName": "../builds/haretyper-${version}.exe"
+		},
+		"publish": null
 	},
 	"homepage": "https://haretyper.niloy.org",
 	"author": "Niloy Mahmud Apu <niloymahmudapu@gmail.com>",
