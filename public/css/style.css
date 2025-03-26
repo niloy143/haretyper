@@ -16,124 +16,195 @@ body {
 }
 
 main {
-	padding: 20px;
 }
 
-div#typing-container {
-	min-width: 300px;
-	max-width: 1024px;
-	margin: 0 auto;
+
+
+div#main-container {
 	display: flex;
-	flex-direction: column;
 
-	& div#actions {
-		padding: 10px;
-		display: flex;
-		justify-content: center;
-
-		button#restart {
-			border: none;
-			outline: none;
-			font-size: large;
-			font-weight: 600;
-			text-transform: uppercase;
-			padding: 15px 30px;
-			border-radius: 5px;
-			background-color: #283c5e;
-			color: var(--light);
-			cursor: pointer;
-
-			&:active {
-				scale: 80%;
-				transition-duration: 300ms;
-			}
+	div#sidebar {
+		width: 300px;
+		height: 100vh;
+		background-color: #222222;
+		position: sticky;
+		top: 0;
+		left: 0;
+		bottom: 0;
+		overflow-y: auto;
+		
+		&::-webkit-scrollbar-thumb {
+			background: #888888;
+			border-radius: 4px;
 		}
-	}
-
-	& div#typing-area {
-		min-height: 100px;
-		background-color: #ffffff99;
-		color: var(--dark);
-		font-size: xx-large;
-		border-radius: 10px 10px 0 0;
-		padding: 20px 30px;
-		line-height: 48px;
-		display: flex;
-		align-items: center;
-		flex-wrap: wrap;
-		user-select: none;
-
-		& span {
-			color: #777777;
-
-			&.typed {
-				color: #006100cc;
-				background-color: #00610022;
-			}
-
-			&.mistyped {
-				background-color: #ff000022;
-			}
+		
+		&::-webkit-scrollbar-track {
+			background: #555;
 		}
-	}
 
-	& textarea#typing-field {
-		border-radius: 0 0 10px 10px;
-		background-color: #ffffff99;
-		color: var(--dark);
-		font-size: xx-large;
-		line-height: 48px;
-		padding: 20px 30px;
-		border: 2px solid #999999;
-		border-width: 2px 0 0 0;
-		outline: none;
-		resize: vertical;
-		scrollbar-width: none;
-
-		&::placeholder {
-			color: #999999;
+		&::-webkit-scrollbar {
+			width: 8px;
 		}
-	}
 
-	& div#display-stats {
-		padding: 20px;
-		display: flex;
-		justify-content: center;
-		gap: 20px;
-
-		& #wpm,
-		& #timer {
-			background-color: #ffffff33;
-			min-width: 160px;
-			padding: 15px 20px;
+		& div#typing-history {
 			display: flex;
 			flex-direction: column;
-			justify-content: center;
-			align-items: center;
-			border-radius: 10px;
+			gap: 5px;
+			margin: 5px;
 
-			& h1,
-			& p {
-				font-family: monospace;
-			}
+			& div {
+				background-color: #333;
+				padding: 15px 20px;
+				border-radius: 8px;
+				display: flex;
+				flex-direction: column;
+				justify-content: center;
+				gap: 10px;
 
-			& h1 {
-				font-size: 48px;
-			}
+				h3 {
+					font-weight: 400;
+					white-space: nowrap;
+					overflow: hidden;
+					text-overflow: ellipsis;
+				}
 
-			& {
-				font-size: 20px;
+				& div {
+					display: flex;
+					align-items: center;
+					justify-content: space-between;
+					flex-direction: row;
+					padding-bottom: 0;
+					padding: 0;
+
+					& span {
+						font-weight: 600;
+					}
+
+					& small {
+						justify-self: end;
+					}
+				}
 			}
 		}
 	}
 
-	div#keyboard-hand-position {
+	div#typing-container {
+		min-width: 300px;
+		max-width: 1024px;
+		margin: 0 auto;
+		padding: 20px;
 		display: flex;
-		justify-content: center;
+		flex-direction: column;
 
-		img {
-			width: 100%;
-			max-width: 700px;
+		& div#actions {
+			padding: 10px;
+			display: flex;
+			justify-content: center;
+
+			button#change-ayah {
+				border: none;
+				outline: none;
+				font-size: large;
+				font-weight: 600;
+				text-transform: uppercase;
+				padding: 15px 30px;
+				border-radius: 5px;
+				background-color: #283c5e;
+				color: var(--light);
+				cursor: pointer;
+
+				&:active {
+					scale: 80%;
+					transition-duration: 300ms;
+				}
+			}
+		}
+
+		& div#typing-area {
+			min-height: 100px;
+			background-color: #ffffff99;
+			color: var(--dark);
+			font-size: xx-large;
+			border-radius: 10px 10px 0 0;
+			padding: 20px 30px;
+			line-height: 48px;
+			display: flex;
+			align-items: center;
+			flex-wrap: wrap;
+			user-select: none;
+
+			& span {
+				color: #777777;
+
+				&.typed {
+					color: #006100cc;
+					background-color: #00610022;
+				}
+
+				&.mistyped {
+					background-color: #ff000022;
+				}
+			}
+		}
+
+		& textarea#typing-field {
+			border-radius: 0 0 10px 10px;
+			background-color: #ffffff99;
+			color: var(--dark);
+			font-size: xx-large;
+			line-height: 48px;
+			padding: 20px 30px;
+			border: 2px solid #999999;
+			border-width: 2px 0 0 0;
+			outline: none;
+			resize: vertical;
+			scrollbar-width: none;
+
+			&::placeholder {
+				color: #999999;
+			}
+		}
+
+		& div#display-stats {
+			padding: 20px;
+			display: flex;
+			justify-content: center;
+			gap: 20px;
+
+			& #wpm,
+			& #timer {
+				background-color: #ffffff33;
+				min-width: 160px;
+				padding: 15px 20px;
+				display: flex;
+				flex-direction: column;
+				justify-content: center;
+				align-items: center;
+				border-radius: 10px;
+
+				& h1,
+				& p {
+					font-family: monospace;
+				}
+
+				& h1 {
+					font-size: 48px;
+				}
+
+				& {
+					font-size: 20px;
+				}
+			}
+		}
+
+		div#keyboard-hand-position {
+			display: flex;
+			justify-content: center;
+
+			img {
+				width: 100%;
+				max-width: 700px;
+			}
 		}
 	}
 }

@@ -1,6 +1,6 @@
 {
 	"name": "haretyper",
-	"version": "1.0.0",
+	"version": "1.1.0",
 	"description": "A simple typing app that suggests only Quranic verses for typing tests.",
 	"main": "index.js",
 	"scripts": {

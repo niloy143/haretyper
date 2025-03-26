@@ -14,18 +14,19 @@ let toType = randomAyah();
 let startedAt = Date.now();
 let statsInterval;
 
+const typingHistoryEl = document.querySelector("div#sidebar div#typing-history");
 const typingAreaEl = document.querySelector("div#typing-area");
 const typingFieldEl = document.querySelector("textarea#typing-field");
 const wpmEl = document.querySelector("div#display-stats #wpm h1");
 const timerEl = document.querySelector("div#display-stats #timer h1");
-const restartBtn = document.querySelector("div#actions button#restart");
+const changeAyahBtn = document.querySelector("div#actions button#change-ayah");
 
 typingFieldEl.addEventListener("input", function () {
 	typed = this.value;
 	render();
 });
 
-restartBtn.addEventListener("click", function () {
+changeAyahBtn.addEventListener("click", function () {
 	typed = "";
 	toType = randomAyah();
 	startedAt = Date.now();
@@ -43,19 +44,27 @@ function randomAyah() {
 	return ayah?.text || randomAyah();
 }
 
-function getStats() {
-	const seconds = (Date.now() - startedAt) / 1000;
+function getStats(typed, startedAt, finishedAt = Date.now()) {
+	let seconds = (finishedAt - startedAt) / 1000;
 	const estimatedWords = typed.length / CHARS_PER_WORD;
-	const wpm = estimatedWords / (seconds / 60);
+	let wpm = estimatedWords / (seconds / 60);
+	const words = typed.split(" ").length;
+
+	seconds = Math.round(seconds);
+	wpm = Math.round(wpm);
+
+	if (isNaN(seconds) || seconds === Infinity) seconds = 0;
+	if (isNaN(wpm) || wpm === Infinity) wpm = 0;
 
 	return {
 		seconds: Math.round(seconds) || 0,
 		wpm: Math.round(wpm) || 0,
+		words: words || 0,
 	};
 }
 
 function displayingStats() {
-	const { seconds, wpm } = getStats();
+	const { seconds, wpm } = getStats(typed, startedAt, Date.now());
 
 	timerEl.innerHTML = seconds;
 	wpmEl.innerHTML = wpm;
@@ -81,6 +90,13 @@ function startTyping() {
 }
 
 function completeTyping() {
+	addToTypingHistory({
+		typed,
+		toType,
+		startedAt,
+		finishedAt: Date.now(),
+	});
+
 	typed = "";
 	toType = randomAyah();
 	startedAt = Date.now();
@@ -88,6 +104,30 @@ function completeTyping() {
 
 	stopDisplayingStats();
 	render();
+}
+
+function renderTypingHistory() {
+	typingHistoryEl.innerHTML = "";
+
+	typingHistory.forEach(({ typed, toType, startedAt, finishedAt }, i) => {
+		const total = typingHistory.length;
+		if (total > 1 && total - 1 === i) return;
+
+		const { wpm, seconds, words } = getStats(typed, startedAt, finishedAt);
+		const div = document.createElement("div");
+		div.innerHTML = `
+			<h3> ${toType} </h3>
+			<div>
+				<span>${words} words</span>
+				<span>${wpm} WPM</span>
+				<span>${seconds}s</span>
+			</div>
+			<div style="justify-content: end;">
+				<small>${new Date(startedAt).toLocaleString()}</small>
+			</div>
+		`;
+		typingHistoryEl.appendChild(div);
+	});
 }
 
 function render() {
@@ -112,6 +152,7 @@ function render() {
 	if (typed && typed === toType) completeTyping();
 	if (typed.length === 1) startTyping();
 	typingFieldEl.focus();
+	renderTypingHistory();
 }
 
 render();

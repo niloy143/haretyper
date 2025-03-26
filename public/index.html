@@ -8,27 +8,33 @@
 </head>
 <body>
     <main>
-        <div id="typing-container">
-            <div id="actions">
-                <button id="restart">Restart</button>
+        <div id="main-container">
+            <div id="sidebar">
+                <div id="typing-history"></div>
             </div>
-            <div id="typing-area"></div>
-            <textarea id="typing-field" placeholder="Type here..."></textarea>
-            <div id="display-stats">
-                <div id="wpm">
-                    <h1>00</h1>
-                    <p>WPM</p>
+            <div id="typing-container">
+                <div id="actions">
+                    <button id="change-ayah">Change Ayah</button>
                 </div>
-                <div id="timer">
-                    <h1>00</h1>
-                    <p>Seconds</p>
+                <div id="typing-area"></div>
+                <textarea id="typing-field" placeholder="Type here..."></textarea>
+                <div id="display-stats">
+                    <div id="wpm">
+                        <h1>00</h1>
+                        <p>WPM</p>
+                    </div>
+                    <div id="timer">
+                        <h1>00</h1>
+                        <p>Seconds</p>
+                    </div>
                 </div>
-            </div>
-            <div id="keyboard-hand-position">
-                <img src="../assets/images/keyborad-hand-position.png"></img>
+                <div id="keyboard-hand-position">
+                    <img src="../assets/images/keyborad-hand-position.png"></img>
+                </div>
             </div>
         </div>
     </main>
+    <script src="./js/typing-history.js"></script>
     <script src="./js/quran.js"></script>
     <script src="./js/main.js"></script>
 </body>
