@@ -1,0 +1,225 @@
+// Define color variables
+$light: #cccccc;
+$dark: #333333;
+$sidebar-bg: #222222;
+$sidebar-thumb-bg: #888888;
+$sidebar-track-bg: #555555;
+$typing-area-bg: rgba(255, 255, 255, 0.6);
+$typing-field-bg: rgba(255, 255, 255, 0.6);
+$button-bg: #283c5e;
+$button-hover-scale: 0.8;
+$button-transition-duration: 300ms;
+$stats-bg: rgba(255, 255, 255, 0.2);
+$border-color: #999999;
+$placeholder-color: #999999;
+$typed-color: rgba(0, 97, 0, 0.8);
+$typed-bg: rgba(0, 97, 0, 0.13);
+$mistyped-bg: rgba(255, 0, 0, 0.13);
+
+// Global styles
+* {
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+	font-family: sans-serif;
+}
+
+body {
+	background-color: $dark;
+	color: $light;
+}
+
+// Main container
+#main-container {
+	display: flex;
+
+	// Sidebar
+	#sidebar {
+		width: 300px;
+		height: 100vh;
+		background-color: $sidebar-bg;
+		position: sticky;
+		top: 0;
+		left: 0;
+		bottom: 0;
+		overflow-y: auto;
+
+		&::-webkit-scrollbar-thumb {
+			background: $sidebar-thumb-bg;
+			border-radius: 4px;
+		}
+
+		&::-webkit-scrollbar-track {
+			background: $sidebar-track-bg;
+		}
+
+		&::-webkit-scrollbar {
+			width: 8px;
+		}
+
+		// Typing history section
+		#typing-history {
+			display: flex;
+			flex-direction: column;
+			gap: 5px;
+			margin: 5px;
+
+			div {
+				background-color: $dark;
+				padding: 15px 20px;
+				border-radius: 8px;
+				display: flex;
+				flex-direction: column;
+				justify-content: center;
+				gap: 10px;
+
+				h3 {
+					font-weight: 400;
+					white-space: nowrap;
+					overflow: hidden;
+					text-overflow: ellipsis;
+				}
+
+				div {
+					display: flex;
+					flex-direction: row;
+					align-items: center;
+					justify-content: space-between;
+					padding: 0;
+
+					span {
+						font-weight: 600;
+					}
+				}
+			}
+		}
+	}
+
+	// Typing container
+	#typing-container {
+		min-width: 300px;
+		max-width: 1024px;
+		margin: 0 auto;
+		padding: 20px;
+		display: flex;
+		flex-direction: column;
+
+		// Actions section
+		#actions {
+			padding: 10px;
+			display: flex;
+			justify-content: center;
+
+			#change-ayah {
+				border: none;
+				outline: none;
+				font-size: large;
+				font-weight: 600;
+				text-transform: uppercase;
+				padding: 15px 30px;
+				border-radius: 5px;
+				background-color: $button-bg;
+				color: $light;
+				cursor: pointer;
+				transition: transform $button-transition-duration;
+
+				&:active {
+					transform: scale($button-hover-scale);
+				}
+			}
+		}
+
+		// Typing area
+		#typing-area {
+			min-height: 100px;
+			background-color: $typing-area-bg;
+			color: $dark;
+			font-size: xx-large;
+			border-radius: 10px 10px 0 0;
+			padding: 20px 30px;
+			line-height: 48px;
+			display: flex;
+			align-items: center;
+			flex-wrap: wrap;
+			user-select: none;
+
+			span {
+				color: #777777;
+				white-space: pre;
+
+				&.typed {
+					color: $typed-color;
+					background-color: $typed-bg;
+				}
+
+				&.mistyped {
+					background-color: $mistyped-bg;
+				}
+			}
+		}
+
+		// Typing field
+		#typing-field {
+			border-radius: 0 0 10px 10px;
+			background-color: $typing-field-bg;
+			color: $dark;
+			font-size: xx-large;
+			line-height: 48px;
+			padding: 20px 30px;
+			border: 2px solid $border-color;
+			border-width: 2px 0 0 0;
+			outline: none;
+			resize: vertical;
+			scrollbar-width: none;
+
+			&::placeholder {
+				color: $placeholder-color;
+			}
+		}
+
+		// Display stats
+		#display-stats {
+			padding: 20px;
+			display: flex;
+			justify-content: center;
+			gap: 20px;
+
+			#words,
+			#wpm,
+			#timer {
+				background-color: $stats-bg;
+				min-width: 160px;
+				padding: 15px 20px;
+				display: flex;
+				flex-direction: column;
+				justify-content: center;
+				align-items: center;
+				border-radius: 10px;
+
+				h1,
+				p {
+					font-family: monospace;
+				}
+
+				h1 {
+					font-size: 48px;
+				}
+
+				p {
+					font-size: 20px;
+				}
+			}
+		}
+
+		// Keyboard hand position
+		#keyboard-hand-position {
+			display: flex;
+			justify-content: center;
+
+			img {
+				width: 100%;
+				max-width: 700px;
+			}
+		}
+	}
+}
